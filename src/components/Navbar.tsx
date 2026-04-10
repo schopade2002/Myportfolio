@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+import { ScrollTrigger, ScrollSmoother } from "gsap/all";
 import HoverLinks from "./HoverLinks";
-import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
 import "./styles/Navbar.css";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
+
 export let smoother: ScrollSmoother;
 
 const Navbar = () => {
@@ -24,27 +24,32 @@ const Navbar = () => {
     smoother.paused(true);
 
     const links = document.querySelectorAll(".header ul a");
+
     links.forEach((elem) => {
       const element = elem as HTMLAnchorElement;
+
       element.addEventListener("click", (e) => {
         if (window.innerWidth > 1024) {
           e.preventDefault();
-          const elem = e.currentTarget as HTMLAnchorElement;
-          const section = elem.getAttribute("data-href");
+          const el = e.currentTarget as HTMLAnchorElement;
+          const section = el.getAttribute("data-href");
           smoother.scrollTo(section, true, "top top");
         }
       });
     });
+
     window.addEventListener("resize", () => {
       ScrollSmoother.refresh(true);
     });
   }, []);
+
   return (
     <>
       <div className="header">
         <a href="/#" className="navbar-title" data-cursor="disable">
-        Sneha
+          Sneha
         </a>
+
         <a
           href="mailto:schopade0825@gmail.com"
           className="navbar-connect"
@@ -52,6 +57,7 @@ const Navbar = () => {
         >
           schopade0825@gmail.com
         </a>
+
         <ul>
           <li>
             <a data-href="#about" href="#about">

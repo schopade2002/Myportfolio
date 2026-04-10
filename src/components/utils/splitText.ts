@@ -1,26 +1,33 @@
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
-// import  SplitText  from "gsap-trial/SplitText";
-import SplitText from "gsap-trial/SplitText";
+import gsap from "gsap";
+import { ScrollTrigger, SplitText } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
 interface ParaElement extends HTMLElement {
   anim?: gsap.core.Animation;
   split?: SplitText;
 }
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
-
 export default function setSplitText() {
   ScrollTrigger.config({ ignoreMobileResize: true });
-  if (window.innerWidth < 900) return;
-  const paras: NodeListOf<ParaElement> = document.querySelectorAll(".para");
-  const titles: NodeListOf<ParaElement> = document.querySelectorAll(".title");
 
-  const TriggerStart = window.innerWidth <= 1024 ? "top 60%" : "20% 60%";
+  if (window.innerWidth < 900) return;
+
+  const paras: NodeListOf<ParaElement> =
+    document.querySelectorAll(".para");
+
+  const titles: NodeListOf<ParaElement> =
+    document.querySelectorAll(".title");
+
+  const TriggerStart =
+    window.innerWidth <= 1024 ? "top 60%" : "20% 60%";
+
   const ToggleAction = "play pause resume reverse";
 
+  // 🔹 Paragraph animation
   paras.forEach((para: ParaElement) => {
     para.classList.add("visible");
+
     if (para.anim) {
       para.anim.progress(1).kill();
       para.split?.revert();
@@ -48,15 +55,19 @@ export default function setSplitText() {
       }
     );
   });
+
+  // 🔹 Title animation
   titles.forEach((title: ParaElement) => {
     if (title.anim) {
       title.anim.progress(1).kill();
       title.split?.revert();
     }
+
     title.split = new SplitText(title, {
       type: "chars,lines",
       linesClass: "split-line",
     });
+
     title.anim = gsap.fromTo(
       title.split.chars,
       { autoAlpha: 0, y: 80, rotate: 10 },
@@ -76,5 +87,6 @@ export default function setSplitText() {
     );
   });
 
+  // 🔹 Refresh handler
   ScrollTrigger.addEventListener("refresh", () => setSplitText());
 }
