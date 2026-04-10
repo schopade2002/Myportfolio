@@ -5,10 +5,12 @@ export function setCharTimeline(
   character: THREE.Object3D<THREE.Object3DEventMap> | null,
   camera: THREE.PerspectiveCamera
 ) {
-  let intensity: number = 0;
+  let intensity = 0;
+
   setInterval(() => {
     intensity = Math.random();
   }, 200);
+
   const tl1 = gsap.timeline({
     scrollTrigger: {
       trigger: ".landing-section",
@@ -18,6 +20,7 @@ export function setCharTimeline(
       invalidateOnRefresh: true,
     },
   });
+
   const tl2 = gsap.timeline({
     scrollTrigger: {
       trigger: ".about-section",
@@ -27,6 +30,7 @@ export function setCharTimeline(
       invalidateOnRefresh: true,
     },
   });
+
   const tl3 = gsap.timeline({
     scrollTrigger: {
       trigger: ".whatIDO",
@@ -36,31 +40,46 @@ export function setCharTimeline(
       invalidateOnRefresh: true,
     },
   });
-  let screenLight: any, monitor: any;
-  character?.children.forEach((object: any) => {
+
+  let screenLight: THREE.Object3D | null = null;
+  let monitor: THREE.Object3D | null = null;
+
+  character?.children.forEach((object: THREE.Object3D) => {
     if (object.name === "Plane004") {
-      object.children.forEach((child: any) => {
-        child.material.transparent = true;
-        child.material.opacity = 0;
-        if (child.material.name === "Material.018") {
-          monitor = child;
-          child.material.color.set("#FFFFFF");
+      object.children.forEach((child: THREE.Object3D) => {
+        const mesh = child as THREE.Mesh;
+        const material = mesh.material as THREE.MeshStandardMaterial;
+
+        material.transparent = true;
+        material.opacity = 0;
+
+        if (material.name === "Material.018") {
+          monitor = mesh;
+          material.color.set("#FFFFFF");
         }
       });
     }
+
     if (object.name === "screenlight") {
-      object.material.transparent = true;
-      object.material.opacity = 0;
-      object.material.emissive.set("#B0F5EA");
-      gsap.timeline({ repeat: -1, repeatRefresh: true }).to(object.material, {
+      const mesh = object as THREE.Mesh;
+      const material = mesh.material as THREE.MeshStandardMaterial;
+
+      material.transparent = true;
+      material.opacity = 0;
+      material.emissive.set("#B0F5EA");
+
+      gsap.timeline({ repeat: -1, repeatRefresh: true }).to(material, {
         emissiveIntensity: () => intensity * 8,
         duration: () => Math.random() * 0.6,
         delay: () => Math.random() * 0.1,
       });
-      screenLight = object;
+
+      screenLight = mesh;
     }
   });
-  const neckBone = character?.getObjectByName("spine005");
+
+  const neckBone = character?.getObjectByName("spine005") as THREE.Object3D | null;
+
   if (window.innerWidth > 1024) {
     if (character) {
       tl1
@@ -85,10 +104,23 @@ export function setCharTimeline(
           { pointerEvents: "none", x: "-12%", delay: 2, duration: 5 },
           0
         )
-        .to(character.rotation, { y: 0.92, x: 0.12, delay: 3, duration: 3 }, 0)
-        .to(neckBone!.rotation, { x: 0.6, delay: 2, duration: 3 }, 0)
-        .to(monitor.material, { opacity: 1, duration: 0.8, delay: 3.2 }, 0)
-        .to(screenLight.material, { opacity: 1, duration: 0.8, delay: 4.5 }, 0)
+        .to(character.rotation, { y: 0.92, x: 0.12, delay: 3, duration: 3 }, 0);
+
+      if (neckBone) {
+        tl2.to(neckBone.rotation, { x: 0.6, delay: 2, duration: 3 }, 0);
+      }
+
+      if (monitor && (monitor as THREE.Mesh).material) {
+        const mat = (monitor as THREE.Mesh).material as THREE.MeshStandardMaterial;
+        tl2.to(mat, { opacity: 1, duration: 0.8, delay: 3.2 }, 0);
+      }
+
+      if (screenLight && (screenLight as THREE.Mesh).material) {
+        const mat = (screenLight as THREE.Mesh).material as THREE.MeshStandardMaterial;
+        tl2.to(mat, { opacity: 1, duration: 0.8, delay: 4.5 }, 0);
+      }
+
+      tl2
         .fromTo(
           ".what-box-in",
           { display: "none" },
@@ -96,7 +128,7 @@ export function setCharTimeline(
           0
         )
         .fromTo(
-          monitor.position,
+          monitor ? (monitor as THREE.Mesh).position : { y: 0, z: 0 },
           { y: -10, z: 2 },
           { y: 0, z: 0, delay: 1.5, duration: 3 },
           0
@@ -127,7 +159,8 @@ export function setCharTimeline(
           end: "bottom top",
         },
       });
-      tM2.to(".what-box-in", { display: "flex", duration: 0.1, delay: 0 }, 0);
+
+      tM2.to(".what-box-in", { display: "flex", duration: 0.1 }, 0);
     }
   }
 }
@@ -142,6 +175,7 @@ export function setAllTimeline() {
       invalidateOnRefresh: true,
     },
   });
+
   careerTimeline
     .fromTo(
       ".career-timeline",
@@ -149,13 +183,7 @@ export function setAllTimeline() {
       { maxHeight: "100%", duration: 0.5 },
       0
     )
-
-    .fromTo(
-      ".career-timeline",
-      { opacity: 0 },
-      { opacity: 1, duration: 0.1 },
-      0
-    )
+    .fromTo(".career-timeline", { opacity: 0 }, { opacity: 1, duration: 0.1 }, 0)
     .fromTo(
       ".career-info-box",
       { opacity: 0 },
@@ -165,11 +193,7 @@ export function setAllTimeline() {
     .fromTo(
       ".career-dot",
       { animationIterationCount: "infinite" },
-      {
-        animationIterationCount: "1",
-        delay: 0.3,
-        duration: 0.1,
-      },
+      { animationIterationCount: "1", delay: 0.3, duration: 0.1 },
       0
     );
 
