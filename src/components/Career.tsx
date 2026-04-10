@@ -12,48 +12,60 @@ const Career = () => {
           <div className="career-timeline">
             <div className="career-dot"></div>
           </div>
+        
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
                 <h4>Full Stack Developer</h4>
-                <h5>Ikshan</h5>
+                <h5>LNE Pvt. Ltd., Pune</h5>
               </div>
-              <h3>2020</h3>
+              <h3>Nov 2025 - Present</h3>
             </div>
             <p>
-              Built 6+ complete applications using React.js. Integrated backend
-              authentication using Node.js & MongoDB. Created responsive UI/UX
-              and designed wireframes using Figma.
+              Developed a role-based ERP frontend, streamlining procurement,
+              HR, and production workflows. Built scalable modules with search,
+              filters, and pagination. Integrated APIs using TanStack Query and
+              managed global state with Zustand. Focused on reusable UI
+              components and performance optimizations for large datasets.
             </p>
           </div>
+
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>Senior Full Stack Developer</h4>
-                <h5>Monocept (Max Life Insurance)</h5>
+                <h4>Full Stack Developer Intern</h4>
+                <h5>Edsom Fintech, Pune</h5>
               </div>
-              <h3>2021</h3>
+              <h3>Mar 2025 - Sep 2025</h3>
             </div>
             <p>
-              Led two development teams on Mpro, a large-scale insurance
-              operations platform. Developed multiple modules using React.js &
-              migrated critical functionalities to Node.js microservices.
+              Worked on UI features for an e-commerce platform (VastraLok). Built
+              reusable React components, integrated REST APIs using Axios, and
+              improved rendering and state handling to reduce unnecessary
+              re-renders and improve user experience. Applied lazy loading to
+              reduce initial load time.
             </p>
           </div>
-          <div className="career-info-box">
+
+          {/* <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>Full Stack Developer</h4>
-                <h5>Logic Loop</h5>
+                <h4>Selected Projects</h4>
+                <h5>React / TypeScript / TanStack Query / Zustand</h5>
               </div>
-              <h3>NOW</h3>
+              <h3>Projects</h3>
             </div>
             <p>
-              Building Solid, a proprietary low-code platform using Angular,
-              Next.js & NestJS. Delivering production-ready CMS-based projects
-              including e-commerce, CRM, and import-export automation systems.
+              <strong>Car Dealership Management System</strong> — Responsive app
+              for vehicle inventory, sales, and customer data. Built reusable
+              components and optimized database queries for large datasets.
+              <br />
+              <strong>Sugar Industry ERP</strong> — Role-based ERP frontend for
+              sugar manufacturing. Implemented data fetching, caching, and
+              global state management; added search, filters, pagination and
+              export features.
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

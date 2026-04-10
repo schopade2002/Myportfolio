@@ -5,63 +5,55 @@ const Contact = () => {
   return (
     <div className="contact-section section-container" id="contact">
       <div className="contact-container">
-        <h3>Contact</h3>
-        <div className="contact-flex">
-          <div className="contact-box">
-            <h4>Email</h4>
-            <p>
-              <a href="mailto:rajeshchittyal21@gmail.com" data-cursor="disable">
-                rajeshchittyal21@gmail.com
+          <h3>Contact</h3>
+          <div className="contact-flex">
+            <div className="contact-box">
+              <h4>Email</h4>
+              <p>
+                <a href="mailto:schopade0825@gmail.com" data-cursor="disable">
+                  schopade0825@gmail.com
+                </a>
+              </p>
+              <h4>Phone</h4>
+              <p>
+                <a href="tel:+919172339567" data-cursor="disable">
+                  +91 91723 39567
+                </a>
+              </p>
+              <h4>Education</h4>
+              <p>Master of Computer Application (MCA)</p>
+            </div>
+            <div className="contact-box">
+              <h4>Social</h4>
+              <a
+                href="https://github.com/schopade2002"
+                target="_blank"
+                data-cursor="disable"
+                className="contact-social"
+              >
+                Github <MdArrowOutward />
               </a>
-            </p>
-            <h4>Education</h4>
-            <p>BSc in Computer Science</p>
-          </div>
-          <div className="contact-box">
-            <h4>Social</h4>
-            <a
-              href="https://github.com/raxx21"
-              target="_blank"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Github <MdArrowOutward />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/rajesh-chityal-2a70141b3"
-              target="_blank"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Linkedin <MdArrowOutward />
-            </a>
-            <a
-              href="https://x.com/raxx21_official"
-              target="_blank"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Twitter <MdArrowOutward />
-            </a>
-            <a
-              href="https://www.instagram.com/therajeshchityal"
-              target="_blank"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Instagram <MdArrowOutward />
-            </a>
-          </div>
-          <div className="contact-box">
-            <h2>
-              Designed and Developed <br /> by <span>Rajesh Chityal</span>
-            </h2>
-            <h5>
-              <MdCopyright /> 2025
-            </h5>
+          
+              {/* If you have a LinkedIn or Instagram, replace the hrefs below with your profiles */}
+              <a
+                href="https://linkedin.com/in/snehachopade25"
+                target="_blank"
+                data-cursor="disable"
+                className="contact-social"
+              >
+                Linkedin <MdArrowOutward />
+              </a>
+            </div>
+            <div className="contact-box">
+              <h2>
+                Designed and Developed <br /> by <span>Sneha Satish Chopade</span>
+              </h2>
+              <h5>
+                <MdCopyright /> 2026
+              </h5>
+            </div>
           </div>
         </div>
-      </div>
     </div>
   );
 };

@@ -5,35 +5,35 @@ import { MdArrowBack, MdArrowForward } from "react-icons/md";
 
 const projects = [
   {
-    title: "Solid Starters",
-    category: "Low-Code Platform",
-    tools: "Angular, Next.js, NestJS, MongoDB",
-    image: "/images/Solidx.png",
+    title: "ERP Sugar",
+    category: "High-Code Platform",
+    tools: "React.js,Typescript, Nest.js,PostgreSQL",
+    image: "/images/solidx.png",
   },
   {
-    title: "Radix",
-    category: "E-Commerce",
-    tools: "Angular, Next.js, NestJS, CMS",
+    title: "HSN",
+    category: "Low-Code Platform",
+    tools: "React.js,Typescript, Nest.js,PostgreSQL",
     image: "/images/radix.png",
   },
   {
-    title: "Bond Cancellation",
-    category: "Import-Export Automation",
-    tools: "Angular, Next.js, NestJS, Workflows",
+    title: "AI Hydration Coach",
+    category: "AI-Powered App",
+    tools: "Python,React.js",
     image: "/images/bond.png",
   },
-  {
-    title: "Sapphire",
-    category: "CRM Platform",
-    tools: "AngularJS, NestJS, PostgreSQL",
-    image: "/images/sapphire.png",
-  },
-  {
-    title: "Mpro",
-    category: "Insurance Platform",
-    tools: "React.js, Node.js, Microservices",
-    image: "/images/Maxlife.png",
-  },
+  // {
+  //   title: "Sapphire",
+  //   category: "CRM Platform",
+  //   tools: "AngularJS, NestJS, PostgreSQL",
+  //   image: "/images/sapphire.png",
+  // },
+  // {
+  //   title: "Mpro",
+  //   category: "Insurance Platform",
+  //   tools: "React.js, Node.js, Microservices",
+  //   image: "/images/Maxlife.png",
+  // },
 ];
 
 const Work = () => {
