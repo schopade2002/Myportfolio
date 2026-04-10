@@ -21,26 +21,40 @@ const Navbar = () => {
     });
 
     smoother.scrollTop(0);
-    smoother.paused(true);
+    smoother.paused(false);
 
     const links = document.querySelectorAll(".header ul a");
 
-    links.forEach((elem) => {
-      const element = elem as HTMLAnchorElement;
+    const handleClick = (e: Event) => {
+      if (window.innerWidth > 1024) {
+        e.preventDefault();
+        const el = e.currentTarget as HTMLAnchorElement;
+        const section = el.getAttribute("data-href");
 
-      element.addEventListener("click", (e) => {
-        if (window.innerWidth > 1024) {
-          e.preventDefault();
-          const el = e.currentTarget as HTMLAnchorElement;
-          const section = el.getAttribute("data-href");
+        if (section) {
           smoother.scrollTo(section, true, "top top");
         }
-      });
+      }
+    };
+
+    links.forEach((elem) => {
+      elem.addEventListener("click", handleClick);
     });
 
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       ScrollSmoother.refresh(true);
-    });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // ✅ CLEANUP FUNCTION
+    return () => {
+      links.forEach((elem) => {
+        elem.removeEventListener("click", handleClick);
+      });
+      window.removeEventListener("resize", handleResize);
+      smoother.kill();
+    };
   }, []);
 
   return (
