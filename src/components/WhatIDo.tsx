@@ -4,26 +4,36 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const WhatIDo = () => {
   const containerRef = useRef<(HTMLDivElement | null)[]>([]);
+
   const setRef = (el: HTMLDivElement | null, index: number) => {
     containerRef.current[index] = el;
   };
+
   useEffect(() => {
+    const containers = containerRef.current.filter(
+      (container): container is HTMLDivElement => container !== null,
+    );
+
+    const handleContainerClick = (container: HTMLDivElement) => {
+      handleClick(container);
+    };
+
     if (ScrollTrigger.isTouch) {
-      containerRef.current.forEach((container) => {
-        if (container) {
-          container.classList.remove("what-noTouch");
-          container.addEventListener("click", () => handleClick(container));
-        }
+      containers.forEach((container) => {
+        container.classList.remove("what-noTouch");
+        container.addEventListener("click", () =>
+          handleContainerClick(container),
+        );
       });
     }
+
     return () => {
-      containerRef.current.forEach((container) => {
-        if (container) {
-          container.removeEventListener("click", () => handleClick(container));
-        }
+      containers.forEach((container) => {
+        container.classList.remove("what-content-active", "what-sibling");
       });
     };
   }, []);
+
   return (
     <div className="whatIDO">
       <div className="what-box">
@@ -34,6 +44,7 @@ const WhatIDo = () => {
           </div>
         </h2>
       </div>
+
       <div className="what-box">
         <div className="what-box-in">
           <div className="what-border2">
@@ -58,6 +69,8 @@ const WhatIDo = () => {
               />
             </svg>
           </div>
+
+          {/* Frontend Development */}
           <div
             className="what-content what-noTouch"
             ref={(el) => setRef(el, 0)}
@@ -84,29 +97,40 @@ const WhatIDo = () => {
                 />
               </svg>
             </div>
+
             <div className="what-corner"></div>
 
             <div className="what-content-in">
               <h3>FRONTEND</h3>
-              <h4>Building Interactive UIs</h4>
+              <h4>Building Responsive User Interfaces</h4>
+
               <p>
-                Crafting performant, responsive interfaces with modern frameworks.
-                From SPAs to micro-frontends, I deliver pixel-perfect experiences.
+                Building responsive and scalable web applications using
+                React.js, TypeScript, and JavaScript. Experienced in reusable UI
+                components, API integration, state management, and frontend
+                performance optimization.
               </p>
+
               <h5>Skillset & tools</h5>
+
               <div className="what-content-flex">
                 <div className="what-tags">React.js</div>
-                <div className="what-tags">Zustand</div>
-                <div className="what-tags">React Query</div>
                 <div className="what-tags">TypeScript</div>
                 <div className="what-tags">JavaScript</div>
-                <div className="what-tags">Shadcn UI</div>
+                <div className="what-tags">Redux Toolkit</div>
+                <div className="what-tags">Zustand</div>
+                <div className="what-tags">TanStack Query</div>
+                <div className="what-tags">Material UI</div>
+                <div className="what-tags">Tailwind CSS</div>
                 <div className="what-tags">HTML5</div>
                 <div className="what-tags">CSS3</div>
               </div>
+
               <div className="what-arrow"></div>
             </div>
           </div>
+
+          {/* API Integration & State Management */}
           <div
             className="what-content what-noTouch"
             ref={(el) => setRef(el, 1)}
@@ -124,19 +148,32 @@ const WhatIDo = () => {
                 />
               </svg>
             </div>
+
             <div className="what-corner"></div>
+
             <div className="what-content-in">
-              <h3>BACKEND</h3>
-              <h4>Scalable Server Architecture</h4>
+              <h3>API & STATE MANAGEMENT</h3>
+              <h4>Efficient Data & Application State</h4>
+
               <p>
-                Designing robust APIs and microservices. From CMS platforms to
-                complex business logic, I build backends that scale.
+                Integrating REST APIs using Axios and managing server and global
+                state with TanStack Query, Redux Toolkit, and Zustand. Focused
+                on efficient data fetching, caching, authentication flows, and
+                maintainable application architecture.
               </p>
+
               <h5>Skillset & tools</h5>
+
               <div className="what-content-flex">
-                <div className="what-tags">Node.js</div>
-                <div className="what-tags">MongoDB</div>
+                <div className="what-tags">REST APIs</div>
+                <div className="what-tags">Axios</div>
+                <div className="what-tags">Redux Toolkit</div>
+                <div className="what-tags">Zustand</div>
+                <div className="what-tags">TanStack Query</div>
+                <div className="what-tags">Git</div>
+                <div className="what-tags">GitHub</div>
               </div>
+
               <div className="what-arrow"></div>
             </div>
           </div>
@@ -151,6 +188,7 @@ export default WhatIDo;
 function handleClick(container: HTMLDivElement) {
   container.classList.toggle("what-content-active");
   container.classList.remove("what-sibling");
+
   if (container.parentElement) {
     const siblings = Array.from(container.parentElement.children);
 

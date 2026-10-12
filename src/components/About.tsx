@@ -6,12 +6,14 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Full Stack Developer with 1 years of experience in building scalable
-          web applications using React, TypeScript, and NestJS. Experienced in
-          developing production-ready modules like Employee Management Systems
-          with search, filtering, and backend-driven pagination. Focused on
-          clean architecture, reusable components, and modern UI using Tailwind
-          CSS and ShadCN UI.
+          Frontend Developer with 1 year of hands-on experience building
+          responsive and scalable web applications using React.js, JavaScript,
+          and TypeScript. Experienced in developing production-ready features,
+          reusable UI components, REST API integration, and efficient state
+          management using Redux Toolkit, Zustand, and TanStack Query. Skilled
+          in Material UI,Figma , Tailwind CSS, performance optimization, and
+          building maintainable user interfaces. Focused on clean code,
+          component reusability, and delivering seamless user experiences.
         </p>
       </div>
     </div>
